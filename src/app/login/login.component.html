@@ -1,0 +1,36 @@
+<form class="border p-3 rounded-3" [formGroup]="loginForm" (ngSubmit)="loginSubmit()">
+  <div class="row g-0">
+    <div class="col text-center p-2 mb-3 bg-light">
+      <span class="fs-3">Login</span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col mb-3">
+      <label for="email" class="form-label">Email address</label>
+      <input type="email" class="form-control" id="email" formControlName="email">
+      <div class="form-text text-danger" *ngIf="Email.errors?.['required'] && (Email.touched || Email.dirty)">Email is Required.</div>
+      <div class="form-text text-danger" *ngIf="Email.errors?.['email'] && (Email.touched || Email.dirty)">Email is Invalid.</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" class="form-control" id="password" formControlName="password">
+      <div class="form-text text-danger" *ngIf="Password.errors?.['required'] && (Password.touched || Password.dirty)">Password is Required.</div>
+      <div class="form-text text-danger" *ngIf="Password.errors?.['minlength'] || Password.errors?.['maxlength'] && (Password.touched || Password.dirty)">
+        Password should be at least 6 and at the max 15 characters long.</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6 offset-3">
+      <div class="d-grid">
+        <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary">Login</button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col mt-2">
+      <span class="me-2">Don't have account?</span><a routerLink="/register">Register</a>
+    </div>
+  </div>
+</form>
